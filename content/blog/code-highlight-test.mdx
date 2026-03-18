@@ -1,0 +1,400 @@
+---
+title: "Code Highlighting Test"
+date: "2024-01-20"
+description: "Testing code highlighting with multiple programming languages"
+tags: ["testing", "code", "syntax-highlighting"]
+author: "Developer"
+---
+
+# Code Highlighting Test
+
+This post demonstrates code highlighting with Shiki across multiple programming languages.
+
+## JavaScript
+
+```javascript
+function fibonacci(n) {
+  if (n <= 1) return n;
+  return fibonacci(n - 1) + fibonacci(n - 2);
+}
+
+console.log(fibonacci(10));
+```
+
+## TypeScript
+
+```typescript
+interface User {
+  id: number;
+  name: string;
+  email: string;
+}
+
+function greetUser(user: User): string {
+  return `Hello, ${user.name}!`;
+}
+
+const user: User = {
+  id: 1,
+  name: "Alice",
+  email: "alice@example.com"
+};
+
+console.log(greetUser(user));
+```
+
+## Python
+
+```python
+def quicksort(arr):
+    if len(arr) <= 1:
+        return arr
+    pivot = arr[len(arr) // 2]
+    left = [x for x in arr if x < pivot]
+    middle = [x for x in arr if x == pivot]
+    right = [x for x in arr if x > pivot]
+    return quicksort(left) + middle + quicksort(right)
+
+print(quicksort([3, 6, 8, 10, 1, 2, 1]))
+```
+
+## Rust
+
+```rust
+fn main() {
+    let numbers = vec![1, 2, 3, 4, 5];
+    
+    let sum: i32 = numbers.iter().sum();
+    println!("Sum: {}", sum);
+    
+    let doubled: Vec<i32> = numbers.iter().map(|x| x * 2).collect();
+    println!("Doubled: {:?}", doubled);
+}
+```
+
+## Go
+
+```go
+package main
+
+import (
+    "fmt"
+    "time"
+)
+
+func main() {
+    ch := make(chan string)
+    
+    go func() {
+        time.Sleep(1 * time.Second)
+        ch <- "Hello from goroutine!"
+    }()
+    
+    msg := <-ch
+    fmt.Println(msg)
+}
+```
+
+## Java
+
+```java
+public class BinarySearch {
+    public static int search(int[] arr, int target) {
+        int left = 0;
+        int right = arr.length - 1;
+        
+        while (left <= right) {
+            int mid = left + (right - left) / 2;
+            
+            if (arr[mid] == target) {
+                return mid;
+            } else if (arr[mid] < target) {
+                left = mid + 1;
+            } else {
+                right = mid - 1;
+            }
+        }
+        
+        return -1;
+    }
+}
+```
+
+## C++
+
+```cpp
+#include <iostream>
+#include <vector>
+#include <algorithm>
+
+int main() {
+    std::vector<int> numbers = {5, 2, 8, 1, 9};
+    
+    std::sort(numbers.begin(), numbers.end());
+    
+    for (int num : numbers) {
+        std::cout << num << " ";
+    }
+    std::cout << std::endl;
+    
+    return 0;
+}
+```
+
+## C#
+
+```csharp
+using System;
+using System.Linq;
+
+class Program
+{
+    static void Main()
+    {
+        var numbers = new[] { 1, 2, 3, 4, 5 };
+        
+        var evenNumbers = numbers.Where(n => n % 2 == 0);
+        
+        Console.WriteLine("Even numbers:");
+        foreach (var num in evenNumbers)
+        {
+            Console.WriteLine(num);
+        }
+    }
+}
+```
+
+## PHP
+
+```php
+<?php
+function isPalindrome($str) {
+    $str = strtolower(preg_replace('/[^a-zA-Z0-9]/', '', $str));
+    return $str === strrev($str);
+}
+
+echo isPalindrome("A man a plan a canal Panama") ? "Yes" : "No";
+?>
+```
+
+## Ruby
+
+```ruby
+class Person
+  attr_accessor :name, :age
+  
+  def initialize(name, age)
+    @name = name
+    @age = age
+  end
+  
+  def greet
+    "Hello, I'm #{@name} and I'm #{@age} years old."
+  end
+end
+
+person = Person.new("Alice", 30)
+puts person.greet
+```
+
+## Swift
+
+```swift
+struct Point {
+    var x: Double
+    var y: Double
+    
+    func distance(to other: Point) -> Double {
+        let dx = x - other.x
+        let dy = y - other.y
+        return sqrt(dx * dx + dy * dy)
+    }
+}
+
+let p1 = Point(x: 0, y: 0)
+let p2 = Point(x: 3, y: 4)
+print("Distance: \(p1.distance(to: p2))")
+```
+
+## Kotlin
+
+```kotlin
+data class User(val name: String, val age: Int)
+
+fun main() {
+    val users = listOf(
+        User("Alice", 30),
+        User("Bob", 25),
+        User("Charlie", 35)
+    )
+    
+    val adults = users.filter { it.age >= 18 }
+    adults.forEach { println("${it.name} is ${it.age} years old") }
+}
+```
+
+## HTML
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Page</title>
+</head>
+<body>
+    <h1>Welcome</h1>
+    <p>This is a sample HTML page.</p>
+</body>
+</html>
+```
+
+## CSS
+
+```css
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.card {
+    padding: 2rem;
+    border-radius: 1rem;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+```
+
+## JSON
+
+```json
+{
+  "name": "developer-portfolio-blog",
+  "version": "1.0.0",
+  "dependencies": {
+    "next": "^15.0.0",
+    "react": "^19.0.0",
+    "shiki": "^4.0.0"
+  },
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build"
+  }
+}
+```
+
+## YAML
+
+```yaml
+name: CI/CD Pipeline
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '18'
+      - run: npm install
+      - run: npm test
+```
+
+## Markdown
+
+```markdown
+# My Blog Post
+
+This is a **bold** statement and this is *italic*.
+
+- Item 1
+- Item 2
+- Item 3
+
+[Link to example](https://example.com)
+```
+
+## Bash
+
+```bash
+#!/bin/bash
+
+# Deploy script
+echo "Starting deployment..."
+
+npm run build
+
+if [ $? -eq 0 ]; then
+    echo "Build successful!"
+    rsync -avz dist/ user@server:/var/www/
+    echo "Deployment complete!"
+else
+    echo "Build failed!"
+    exit 1
+fi
+```
+
+## SQL
+
+```sql
+CREATE TABLE users (
+    id SERIAL PRIMARY KEY,
+    username VARCHAR(50) UNIQUE NOT NULL,
+    email VARCHAR(100) UNIQUE NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+INSERT INTO users (username, email) 
+VALUES ('alice', 'alice@example.com');
+
+SELECT * FROM users 
+WHERE created_at > NOW() - INTERVAL '7 days'
+ORDER BY created_at DESC;
+```
+
+## GraphQL
+
+```graphql
+type User {
+  id: ID!
+  name: String!
+  email: String!
+  posts: [Post!]!
+}
+
+type Post {
+  id: ID!
+  title: String!
+  content: String!
+  author: User!
+  createdAt: DateTime!
+}
+
+type Query {
+  user(id: ID!): User
+  posts(limit: Int = 10): [Post!]!
+}
+
+type Mutation {
+  createPost(title: String!, content: String!): Post!
+}
+```
+
+## Inline Code
+
+You can also use `inline code` like this: `const x = 42;`
+
+## Conclusion
+
+This demonstrates Shiki's syntax highlighting capabilities across 20+ programming languages!

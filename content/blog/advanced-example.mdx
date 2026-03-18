@@ -1,0 +1,84 @@
+---
+title: "Advanced MDX Features"
+date: "2024-01-20"
+description: "Demonstrating code highlighting and mathematical formulas"
+tags: ["mdx", "math", "code"]
+author: "Tech Writer"
+coverImage: "/images/advanced.jpg"
+---
+
+# Advanced MDX Features
+
+This post demonstrates advanced features of our MDX pipeline.
+
+## Multiple Programming Languages
+
+### JavaScript
+```javascript
+const fibonacci = (n) => {
+  if (n <= 1) return n;
+  return fibonacci(n - 1) + fibonacci(n - 2);
+};
+```
+
+### Python
+```python
+def quicksort(arr):
+    if len(arr) <= 1:
+        return arr
+    pivot = arr[len(arr) // 2]
+    left = [x for x in arr if x < pivot]
+    middle = [x for x in arr if x == pivot]
+    right = [x for x in arr if x > pivot]
+    return quicksort(left) + middle + quicksort(right)
+```
+
+### Rust
+```rust
+fn factorial(n: u64) -> u64 {
+    match n {
+        0 => 1,
+        _ => n * factorial(n - 1),
+    }
+}
+```
+
+## Mathematical Formulas
+
+### Inline Math
+The quadratic formula is $x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}$.
+
+### Display Math
+
+The Fourier transform:
+
+$$
+F(\omega) = \int_{-\infty}^{\infty} f(t) e^{-i\omega t} dt
+$$
+
+Maxwell's equations:
+
+$$
+\begin{aligned}
+\nabla \cdot \mathbf{E} &= \frac{\rho}{\epsilon_0} \\
+\nabla \cdot \mathbf{B} &= 0 \\
+\nabla \times \mathbf{E} &= -\frac{\partial \mathbf{B}}{\partial t} \\
+\nabla \times \mathbf{B} &= \mu_0\mathbf{J} + \mu_0\epsilon_0\frac{\partial \mathbf{E}}{\partial t}
+\end{aligned}
+$$
+
+## Complex Expressions
+
+The Schrödinger equation:
+
+$$
+i\hbar\frac{\partial}{\partial t}\Psi(\mathbf{r},t) = \left[-\frac{\hbar^2}{2m}\nabla^2 + V(\mathbf{r},t)\right]\Psi(\mathbf{r},t)
+$$
+
+## Conclusion
+
+Our MDX pipeline successfully handles:
+- ✅ Multiple programming languages with syntax highlighting
+- ✅ Inline and display mathematical formulas
+- ✅ Complex LaTeX expressions
+- ✅ Frontmatter metadata extraction

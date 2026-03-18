@@ -1,26 +1,45 @@
 {
-  "name": "temp-next-app",
+  "name": "developer-portfolio-blog",
   "version": "0.1.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "test": "vitest --run",
+    "test:watch": "vitest",
+    "check-config": "node scripts/check-config.js"
   },
   "dependencies": {
+    "@giscus/react": "^3.1.0",
+    "@shikijs/rehype": "^4.0.2",
+    "@supabase/supabase-js": "^2.99.2",
+    "clsx": "^2.1.1",
+    "framer-motion": "^12.38.0",
+    "gray-matter": "^4.0.3",
+    "lenis": "^1.3.18",
+    "lucide-react": "^0.577.0",
     "next": "16.1.7",
+    "next-mdx-remote": "^6.0.0",
     "react": "19.2.3",
-    "react-dom": "19.2.3"
+    "react-dom": "19.2.3",
+    "rehype-katex": "^7.0.1",
+    "remark-math": "^6.0.0",
+    "shiki": "^4.0.2",
+    "tailwind-merge": "^3.5.0",
+    "unist-util-visit": "^5.1.0"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "@vitest/ui": "^4.1.0",
     "eslint": "^9",
     "eslint-config-next": "16.1.7",
     "tailwindcss": "^4",
-    "typescript": "^5"
+    "typescript": "^5",
+    "vitest": "^4.1.0"
   }
 }

@@ -1,21 +1,143 @@
 @import "tailwindcss";
 
+/**
+ * 全局样式配置
+ * Requirements: 3.1, 3.3, 3.4, 3.5, 3.6, 10.1, 10.2, 10.3
+ */
+
+/* 默认暗黑模式主题 (Requirements 3.1, 3.3) */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* 深邃背景色 - 暗黑模式为默认 */
+  --background: #0a0a0a;
+  --foreground: #ededed;
+
+  /* 高饱和度霓虹强调色 (Dopamine colors) - Requirements 3.4 */
+  --neon-pink: #ff006e;
+  --neon-purple: #8338ec;
+  --neon-blue: #3a86ff;
+  --neon-cyan: #06ffa5;
+  --neon-yellow: #ffbe0b;
+  --neon-orange: #fb5607;
+
+  /* 毛玻璃效果变量 (Requirements 3.6, 10.1, 10.2, 10.3) */
+  --glass-bg: rgba(255, 255, 255, 0.05);
+  --glass-border: rgba(255, 255, 255, 0.1);
+  --glass-blur: 12px;
 }
 
 @theme inline {
+  /* 背景和前景色 (Requirements 3.1, 3.3) */
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+
+  /* 霓虹色调色板 (Requirements 3.4) */
+  --color-neon-pink: var(--neon-pink);
+  --color-neon-purple: var(--neon-purple);
+  --color-neon-blue: var(--neon-blue);
+  --color-neon-cyan: var(--neon-cyan);
+  --color-neon-yellow: var(--neon-yellow);
+  --color-neon-orange: var(--neon-orange);
+
+  /* 圆角样式 (Squircle) - Requirements 3.5 */
+  --radius-squircle-sm: 12px;
+  --radius-squircle-md: 16px;
+  --radius-squircle-lg: 24px;
+  --radius-squircle-xl: 32px;
+
+  /* 字体 */
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+/**
+ * 毛玻璃效果工具类 (Glassmorphism)
+ * Requirements: 3.6, 10.1, 10.2, 10.3
+ * 
+ * 使用方法:
+ * - .glass: 标准毛玻璃效果
+ * - .glass-strong: 更强的毛玻璃效果（更不透明）
+ * - .glass-subtle: 更微妙的毛玻璃效果（更透明）
+ */
+@layer utilities {
+  .glass {
+    background: var(--glass-bg);
+    backdrop-filter: blur(var(--glass-blur));
+    -webkit-backdrop-filter: blur(var(--glass-blur));
+    border: 1px solid var(--glass-border);
+  }
+
+  .glass-strong {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+  }
+
+  .glass-subtle {
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+  }
+
+  /* 响应式设计工具类 (Requirements 14.1, 14.2, 14.3, 14.5) */
+  .touch-target {
+    min-width: 44px;
+    min-height: 44px;
+  }
+
+  /* 移动端优化文本 */
+  @media (max-width: 767px) {
+    .text-responsive-sm {
+      font-size: 0.875rem;
+      line-height: 1.5;
+    }
+
+    .text-responsive-base {
+      font-size: 1rem;
+      line-height: 1.6;
+    }
+
+    .text-responsive-lg {
+      font-size: 1.25rem;
+      line-height: 1.7;
+    }
+  }
+
+  /* 平板端优化 */
+  @media (min-width: 768px) and (max-width: 1023px) {
+    .text-responsive-sm {
+      font-size: 0.9375rem;
+      line-height: 1.55;
+    }
+
+    .text-responsive-base {
+      font-size: 1.0625rem;
+      line-height: 1.65;
+    }
+
+    .text-responsive-lg {
+      font-size: 1.375rem;
+      line-height: 1.75;
+    }
+  }
+
+  /* 桌面端优化 */
+  @media (min-width: 1024px) {
+    .text-responsive-sm {
+      font-size: 1rem;
+      line-height: 1.6;
+    }
+
+    .text-responsive-base {
+      font-size: 1.125rem;
+      line-height: 1.7;
+    }
+
+    .text-responsive-lg {
+      font-size: 1.5rem;
+      line-height: 1.8;
+    }
   }
 }
 
@@ -23,4 +145,79 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+}
+
+/**
+ * Shiki 代码高亮样式
+ * Requirements: 6.1, 6.2, 6.3, 6.5
+ */
+.shiki-wrapper {
+  margin: 1.5rem 0;
+}
+
+.shiki-wrapper pre {
+  margin: 0;
+  padding: 1.5rem;
+  overflow-x: auto;
+  border-radius: 0.5rem;
+  font-size: 0.875rem;
+  line-height: 1.7;
+}
+
+.shiki-wrapper code {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 0.875rem;
+}
+
+/* 确保代码块在暗黑模式下清晰可读 */
+.shiki-wrapper pre {
+  background-color: #0d1117 !important;
+}
+
+/* 保留代码格式和缩进 (Requirement 6.5) */
+.shiki-wrapper pre code {
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  word-wrap: normal;
+  tab-size: 4;
+}
+
+/**
+ * KaTeX 数学公式样式
+ * Requirements: 7.2
+ * 确保数学公式在暗黑模式下清晰可读
+ */
+.katex {
+  font-size: 1.1em;
+  color: #ededed;
+}
+
+.katex-display {
+  margin: 1.5rem 0;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 0.5rem;
+}
+
+/* 确保 KaTeX 在暗黑模式下的颜色 */
+.katex .mord,
+.katex .mop,
+.katex .mbin,
+.katex .mrel,
+.katex .mopen,
+.katex .mclose,
+.katex .mpunct {
+  color: #ededed;
+}
+
+/* 数学公式中的特殊符号使用霓虹色强调 */
+.katex .mop {
+  color: var(--neon-cyan);
+}
+
+.katex .mrel {
+  color: var(--neon-pink);
 }

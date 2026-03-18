@@ -1,0 +1,280 @@
+---
+title: "React Hooks 完全指南"
+date: "2024-01-21"
+description: "深入理解 React Hooks 的使用方法和最佳实践"
+tags: ["React", "Hooks", "前端开发"]
+author: "Light Your Future"
+---
+
+# React Hooks 完全指南
+
+React Hooks 是 React 16.8 引入的新特性，让我们可以在函数组件中使用状态和其他 React 特性。
+
+## 什么是 Hooks？
+
+Hooks 是一些特殊的函数，让你可以"钩入" React 的特性。最常用的 Hooks 包括：
+
+- `useState` - 状态管理
+- `useEffect` - 副作用处理
+- `useContext` - 上下文访问
+- `useRef` - 引用管理
+
+## useState - 状态管理
+
+`useState` 是最基础的 Hook，用于在函数组件中添加状态。
+
+```typescript
+import { useState } from 'react';
+
+function Counter() {
+  const [count, setCount] = useState(0);
+
+  return (
+    <div>
+      <p>当前计数: {count}</p>
+      <button onClick={() => setCount(count + 1)}>
+        增加
+      </button>
+    </div>
+  );
+}
+```
+
+### 多个状态变量
+
+你可以在一个组件中使用多个 `useState`：
+
+```typescript
+function UserProfile() {
+  const [name, setName] = useState('');
+  const [age, setAge] = useState(0);
+  const [email, setEmail] = useState('');
+
+  return (
+    <form>
+      <input 
+        value={name} 
+        onChange={(e) => setName(e.target.value)} 
+        placeholder="姓名"
+      />
+      <input 
+        type="number"
+        value={age} 
+        onChange={(e) => setAge(Number(e.target.value))} 
+        placeholder="年龄"
+      />
+      <input 
+        value={email} 
+        onChange={(e) => setEmail(e.target.value)} 
+        placeholder="邮箱"
+      />
+    </form>
+  );
+}
+```
+
+## useEffect - 副作用处理
+
+`useEffect` 用于处理副作用，比如数据获取、订阅、手动修改 DOM 等。
+
+```typescript
+import { useState, useEffect } from 'react';
+
+function DataFetcher() {
+  const [data, setData] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    // 组件挂载时执行
+    fetch('https://api.example.com/data')
+      .then(response => response.json())
+      .then(data => {
+        setData(data);
+        setLoading(false);
+      });
+
+    // 清理函数（可选）
+    return () => {
+      console.log('组件卸载');
+    };
+  }, []); // 空依赖数组表示只在挂载时执行一次
+
+  if (loading) return <div>加载中...</div>;
+  return <div>{JSON.stringify(data)}</div>;
+}
+```
+
+### 依赖数组
+
+`useEffect` 的第二个参数是依赖数组：
+
+```typescript
+// 每次渲染都执行
+useEffect(() => {
+  console.log('每次渲染');
+});
+
+// 只在挂载时执行一次
+useEffect(() => {
+  console.log('只执行一次');
+}, []);
+
+// 当 count 变化时执行
+useEffect(() => {
+  console.log('count 变化了:', count);
+}, [count]);
+```
+
+## useContext - 上下文访问
+
+`useContext` 让你可以访问 React Context，避免 props 层层传递。
+
+```typescript
+import { createContext, useContext } from 'react';
+
+// 创建 Context
+const ThemeContext = createContext('light');
+
+function ThemedButton() {
+  // 使用 Context
+  const theme = useContext(ThemeContext);
+  
+  return (
+    <button className={theme === 'dark' ? 'dark-btn' : 'light-btn'}>
+      主题按钮
+    </button>
+  );
+}
+
+function App() {
+  return (
+    <ThemeContext.Provider value="dark">
+      <ThemedButton />
+    </ThemeContext.Provider>
+  );
+}
+```
+
+## useRef - 引用管理
+
+`useRef` 用于访问 DOM 元素或保存可变值。
+
+```typescript
+import { useRef, useEffect } from 'react';
+
+function FocusInput() {
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    // 组件挂载时自动聚焦
+    inputRef.current?.focus();
+  }, []);
+
+  return <input ref={inputRef} type="text" />;
+}
+```
+
+## 自定义 Hooks
+
+你可以创建自己的 Hooks 来复用逻辑：
+
+```typescript
+// 自定义 Hook: 窗口尺寸
+function useWindowSize() {
+  const [size, setSize] = useState({
+    width: window.innerWidth,
+    height: window.innerHeight
+  });
+
+  useEffect(() => {
+    const handleResize = () => {
+      setSize({
+        width: window.innerWidth,
+        height: window.innerHeight
+      });
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  return size;
+}
+
+// 使用自定义 Hook
+function MyComponent() {
+  const { width, height } = useWindowSize();
+  
+  return (
+    <div>
+      窗口尺寸: {width} x {height}
+    </div>
+  );
+}
+```
+
+## Hooks 规则
+
+使用 Hooks 时必须遵守两个规则：
+
+1. **只在顶层调用 Hooks**
+   - ❌ 不要在循环、条件或嵌套函数中调用
+   - ✅ 在函数组件的顶层调用
+
+2. **只在 React 函数中调用 Hooks**
+   - ✅ 在函数组件中调用
+   - ✅ 在自定义 Hooks 中调用
+   - ❌ 不要在普通 JavaScript 函数中调用
+
+## 性能优化 Hooks
+
+### useMemo
+
+缓存计算结果：
+
+```typescript
+import { useMemo } from 'react';
+
+function ExpensiveComponent({ items }) {
+  const total = useMemo(() => {
+    console.log('计算总和...');
+    return items.reduce((sum, item) => sum + item.price, 0);
+  }, [items]); // 只在 items 变化时重新计算
+
+  return <div>总计: {total}</div>;
+}
+```
+
+### useCallback
+
+缓存函数引用：
+
+```typescript
+import { useCallback } from 'react';
+
+function Parent() {
+  const [count, setCount] = useState(0);
+
+  const handleClick = useCallback(() => {
+    console.log('点击了');
+  }, []); // 函数引用不会改变
+
+  return <Child onClick={handleClick} />;
+}
+```
+
+## 总结
+
+React Hooks 的优势：
+
+- ✅ 更简洁的代码
+- ✅ 更好的逻辑复用
+- ✅ 更容易理解
+- ✅ 更好的类型推断（TypeScript）
+
+掌握 Hooks 是现代 React 开发的必备技能！
+
+## 参考资源
+
+- [React 官方文档](https://react.dev/reference/react)
+- [Hooks API 参考](https://react.dev/reference/react/hooks)
