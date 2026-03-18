@@ -1,0 +1,42 @@
+# Vercel 环境变量配置清单
+# 复制以下内容到 Vercel 的环境变量设置中
+
+变量 1:
+Name: NEXT_PUBLIC_SUPABASE_URL
+Value: https://nbcxqyjlhusyurfgglnu.supabase.co
+
+变量 2:
+Name: NEXT_PUBLIC_SUPABASE_ANON_KEY
+Value: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im5iY3hxeWpsaHVzeXVyZmdnbG51Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzM4MDc3NzMsImV4cCI6MjA4OTM4Mzc3M30.diMXwtvKyIJoVIeUQ8wjH50btr015od4ps_-cvKXOcc
+
+变量 3:
+Name: NEXT_PUBLIC_GISCUS_REPO
+Value: lightyourfuture/developer-blog
+
+变量 4:
+Name: NEXT_PUBLIC_GISCUS_REPO_ID
+Value: R_kgDORqDATA
+
+变量 5:
+Name: NEXT_PUBLIC_GISCUS_CATEGORY
+Value: General
+
+变量 6:
+Name: NEXT_PUBLIC_GISCUS_CATEGORY_ID
+Value: DIC_kwDORqDATM4C4qBR
+
+---
+
+如何添加环境变量：
+
+1. 在 Vercel 部署页面，找到 "Environment Variables" 部分
+2. 点击 "Add" 或展开环境变量设置
+3. 逐个添加上面的 6 个变量
+4. Name 填变量名，Value 填对应的值
+5. 确保所有 6 个都添加完成
+6. 点击 Deploy 或 Save
+
+注意：
+- 变量名必须完全一致（区分大小写）
+- 值要完整复制，不要有多余空格
+- 不要加引号

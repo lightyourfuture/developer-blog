@@ -1,0 +1,8 @@
+Fix: Enable anonymous reactions without login
+
+- Add localStorage-based anonymous user ID generation
+- Store user's reaction state in browser localStorage
+- Remove login requirement for reaction buttons
+- Remove "Sign in to react" message
+- Users can now react to posts without authentication
+- Reaction counts are still stored in Supabase database

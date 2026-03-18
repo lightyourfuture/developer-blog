@@ -22,7 +22,36 @@ const reactionLabels = {
     fire: 'Fire',
 };
 
-export function ReactionButton({ postId, userId, initialStats }: ReactionButtonProps) {
+// Generate a unique user ID for anonymous users
+function getAnonymousUserId(): string {
+    const storageKey = 'blog_anonymous_user_id';
+    let userId = localStorage.getItem(storageKey);
+
+    if (!userId) {
+        userId = `anon_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
+        localStorage.setItem(storageKey, userId);
+    }
+
+    return userId;
+}
+
+// Get user's reaction state from localStorage
+function getUserReaction(postId: string): keyof ReactionStats | null {
+    const storageKey = `reaction_${postId}`;
+    return localStorage.getItem(storageKey) as keyof ReactionStats | null;
+}
+
+// Save user's reaction state to localStorage
+function setUserReaction(postId: string, type: keyof ReactionStats | null) {
+    const storageKey = `reaction_${postId}`;
+    if (type) {
+        localStorage.setItem(storageKey, type);
+    } else {
+        localStorage.removeItem(storageKey);
+    }
+}
+
+export function ReactionButton({ postId, userId: providedUserId, initialStats }: ReactionButtonProps) {
     const [stats, setStats] = useState<ReactionStats>(initialStats || { like: 0, love: 0, fire: 0 });
     const [activeReaction, setActiveReaction] = useState<keyof ReactionStats | null>(null);
     const [isLoading, setIsLoading] = useState(false);
@@ -32,13 +61,17 @@ export function ReactionButton({ postId, userId, initialStats }: ReactionButtonP
         if (!initialStats) {
             getReactionStats(postId).then(setStats);
         }
+
+        // Load user's previous reaction from localStorage
+        const savedReaction = getUserReaction(postId);
+        if (savedReaction) {
+            setActiveReaction(savedReaction);
+        }
     }, [postId, initialStats]);
 
     const handleReaction = async (type: keyof ReactionStats) => {
-        if (!userId) {
-            alert('Please sign in to react to posts');
-            return;
-        }
+        // Use provided userId or generate anonymous userId
+        const userId = providedUserId || getAnonymousUserId();
 
         setIsLoading(true);
 
@@ -50,6 +83,7 @@ export function ReactionButton({ postId, userId, initialStats }: ReactionButtonP
             if (isRemoving) {
                 newStats[type] = Math.max(0, newStats[type] - 1);
                 setActiveReaction(null);
+                setUserReaction(postId, null);
             } else {
                 // Remove previous reaction if exists
                 if (activeReaction) {
@@ -57,6 +91,7 @@ export function ReactionButton({ postId, userId, initialStats }: ReactionButtonP
                 }
                 newStats[type] = newStats[type] + 1;
                 setActiveReaction(type);
+                setUserReaction(postId, type);
             }
 
             setStats(newStats);
@@ -81,6 +116,9 @@ export function ReactionButton({ postId, userId, initialStats }: ReactionButtonP
             if (initialStats) {
                 setStats(initialStats);
             }
+            // Revert localStorage on error
+            const savedReaction = getUserReaction(postId);
+            setActiveReaction(savedReaction);
         } finally {
             setIsLoading(false);
         }

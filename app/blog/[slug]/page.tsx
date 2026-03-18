@@ -138,9 +138,6 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                         postId={slug}
                         initialStats={reactionStats}
                     />
-                    <p className="text-sm text-gray-400 mt-4">
-                        Sign in to react to this post
-                    </p>
                 </div>
 
                 {/* Comments Section */}
