@@ -1,4 +1,4 @@
-Fix: Enable anonymous reactions without login
+Fix: Enable anonymous reactions without login & improve mobile responsiveness
 
 - Add localStorage-based anonymous user ID generation
 - Store user's reaction state in browser localStorage
@@ -6,3 +6,11 @@ Fix: Enable anonymous reactions without login
 - Remove "Sign in to react" message
 - Users can now react to posts without authentication
 - Reaction counts are still stored in Supabase database
+
+Mobile Responsiveness Improvements:
+- Fix code block overflow on mobile devices
+- Add horizontal scrolling for code blocks
+- Optimize padding and font sizes for mobile
+- Add break-words for long titles and descriptions
+- Improve responsive spacing across all breakpoints
+- Add overflow-hidden to article content containers

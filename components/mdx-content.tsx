@@ -87,7 +87,22 @@ export async function MDXContent({ source, components }: MDXContentProps) {
     };
 
     return (
-        <div className="prose prose-invert max-w-none">
+        <div className="prose prose-invert max-w-none
+            [&_pre]:overflow-x-auto 
+            [&_pre]:max-w-full 
+            [&_pre]:rounded-lg 
+            [&_pre]:p-4 
+            [&_pre]:text-sm
+            [&_pre]:leading-relaxed
+            [&_pre_code]:block
+            [&_pre_code]:w-fit
+            [&_pre_code]:min-w-full
+            [&_table]:block
+            [&_table]:overflow-x-auto
+            [&_table]:max-w-full
+            [&_img]:max-w-full
+            [&_img]:h-auto
+        ">
             <MDXRemote
                 source={source}
                 components={mergedComponents}

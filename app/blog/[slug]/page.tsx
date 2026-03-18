@@ -79,16 +79,16 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
     const reactionStats = await getReactionStats(slug);
 
     return (
-        <div className="min-h-screen bg-background py-12 px-4">
+        <div className="min-h-screen bg-background py-8 md:py-12 px-4">
             <article className="max-w-4xl mx-auto">
                 {/* Article Header - Bento Grid Style Card */}
-                <header className="glass rounded-[var(--radius-squircle-lg)] p-8 mb-8">
-                    <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">
+                <header className="glass rounded-[var(--radius-squircle-lg)] p-6 md:p-8 mb-6 md:mb-8">
+                    <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4 break-words">
                         {frontmatter.title}
                     </h1>
 
                     {frontmatter.description && (
-                        <p className="text-xl text-gray-300 mb-6">
+                        <p className="text-lg md:text-xl text-gray-300 mb-6 break-words">
                             {frontmatter.description}
                         </p>
                     )}
@@ -127,12 +127,12 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                 </header>
 
                 {/* Article Content */}
-                <div className="glass rounded-[var(--radius-squircle-lg)] p-8 md:p-12">
+                <div className="glass rounded-[var(--radius-squircle-lg)] p-6 md:p-8 lg:p-12 overflow-hidden">
                     <MDXContent source={content} />
                 </div>
 
                 {/* Reactions Section */}
-                <div className="glass rounded-[var(--radius-squircle-lg)] p-6 mt-8">
+                <div className="glass rounded-[var(--radius-squircle-lg)] p-6 mt-6 md:mt-8">
                     <h3 className="text-lg font-semibold text-white mb-4">React to this post</h3>
                     <ReactionButton
                         postId={slug}
@@ -141,7 +141,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                 </div>
 
                 {/* Comments Section */}
-                <div className="glass rounded-[var(--radius-squircle-lg)] p-6 mt-8">
+                <div className="glass rounded-[var(--radius-squircle-lg)] p-6 mt-6 md:mt-8">
                     <h3 className="text-lg font-semibold text-white mb-6">Comments</h3>
                     <GiscusComments
                         repo={process.env.NEXT_PUBLIC_GISCUS_REPO || 'username/repo'}

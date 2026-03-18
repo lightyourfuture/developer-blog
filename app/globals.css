@@ -162,6 +162,7 @@ body {
   border-radius: 0.5rem;
   font-size: 0.875rem;
   line-height: 1.7;
+  max-width: 100%;
 }
 
 .shiki-wrapper code {
@@ -181,6 +182,32 @@ body {
   word-break: normal;
   word-wrap: normal;
   tab-size: 4;
+}
+
+/* 移动端代码块优化 - 防止溢出 */
+@media (max-width: 767px) {
+  .shiki-wrapper pre {
+    padding: 1rem;
+    font-size: 0.75rem;
+    line-height: 1.5;
+  }
+
+  .shiki-wrapper code {
+    font-size: 0.75rem;
+  }
+}
+
+/* 全局代码块溢出保护 */
+pre {
+  overflow-x: auto !important;
+  max-width: 100% !important;
+  word-wrap: normal !important;
+}
+
+pre code {
+  display: inline-block;
+  min-width: 100%;
+  white-space: pre !important;
 }
 
 /**
