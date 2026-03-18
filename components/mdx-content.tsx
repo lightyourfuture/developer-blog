@@ -59,6 +59,39 @@ const defaultComponents: MDXComponents = {
         <ol className="mb-4 ml-6 list-decimal space-y-2 text-gray-300">{children}</ol>
     ),
     li: ({ children }: any) => <li className="leading-7">{children}</li>,
+    // Style tables
+    table: ({ children }: any) => (
+        <div className="my-6 w-full overflow-x-auto">
+            <table className="w-full border-collapse text-sm">
+                {children}
+            </table>
+        </div>
+    ),
+    thead: ({ children }: any) => (
+        <thead className="bg-white/5 border-b border-white/10">
+            {children}
+        </thead>
+    ),
+    tbody: ({ children }: any) => (
+        <tbody className="divide-y divide-white/10">
+            {children}
+        </tbody>
+    ),
+    tr: ({ children }: any) => (
+        <tr className="hover:bg-white/5 transition-colors">
+            {children}
+        </tr>
+    ),
+    th: ({ children }: any) => (
+        <th className="px-4 py-3 text-left font-semibold text-white">
+            {children}
+        </th>
+    ),
+    td: ({ children }: any) => (
+        <td className="px-4 py-3 text-gray-300">
+            {children}
+        </td>
+    ),
     // Style blockquotes
     blockquote: ({ children }: any) => (
         <blockquote className="my-4 border-l-4 border-cyan-500/50 bg-white/5 pl-4 py-2 italic text-gray-300">

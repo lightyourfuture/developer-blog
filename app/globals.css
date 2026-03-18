@@ -248,3 +248,76 @@ pre code {
 .katex .mrel {
   color: var(--neon-pink);
 }
+
+/**
+ * 表格样式优化
+ * 确保表格在移动端正确显示
+ */
+table {
+  display: table;
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.5rem 0;
+}
+
+thead {
+  display: table-header-group;
+}
+
+tbody {
+  display: table-row-group;
+}
+
+tr {
+  display: table-row;
+}
+
+th,
+td {
+  display: table-cell;
+  padding: 0.75rem 1rem;
+  text-align: left;
+  vertical-align: top;
+}
+
+th {
+  font-weight: 600;
+  background: rgba(255, 255, 255, 0.05);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+td {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* 移动端表格优化 */
+@media (max-width: 767px) {
+  table {
+    font-size: 0.875rem;
+  }
+
+  th,
+  td {
+    padding: 0.5rem 0.75rem;
+  }
+
+  /* 如果表格太宽，允许水平滚动 */
+  .prose table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+
+  .prose thead,
+  .prose tbody,
+  .prose tr {
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+  }
+
+  .prose th,
+  .prose td {
+    display: table-cell;
+  }
+}

@@ -1,5 +1,6 @@
-Fix: Enable anonymous reactions without login & improve mobile responsiveness
+Fix: Enable anonymous reactions & improve mobile responsiveness
 
+Anonymous Reactions:
 - Add localStorage-based anonymous user ID generation
 - Store user's reaction state in browser localStorage
 - Remove login requirement for reaction buttons
@@ -14,3 +15,11 @@ Mobile Responsiveness Improvements:
 - Add break-words for long titles and descriptions
 - Improve responsive spacing across all breakpoints
 - Add overflow-hidden to article content containers
+
+Table Display Fixes:
+- Fix table rendering on mobile devices
+- Add proper table structure with thead, tbody, tr, th, td
+- Add horizontal scrolling for wide tables
+- Optimize table padding and font size for mobile
+- Add hover effects and proper borders
+- Ensure tables display correctly across all devices
