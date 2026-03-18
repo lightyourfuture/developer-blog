@@ -1,5 +1,6 @@
 import { BentoGrid, BentoCard } from '@/components/bento-grid';
 import { Code2, Rocket, Mail, Github, Linkedin, BookOpen } from 'lucide-react';
+import Link from 'next/link';
 
 /**
  * 主页组件
@@ -100,24 +101,26 @@ export default function Home() {
           </BentoCard>
 
           {/* 中等卡片 - 博客 */}
-          <BentoCard
-            title="最新博客"
-            description="分享技术见解和开发经验"
-            size="medium"
-            className="bg-gradient-to-br from-neon-yellow/10 to-neon-orange/10"
-          >
-            <div className="flex items-center gap-3 mt-4">
-              <BookOpen className="w-6 h-6 text-neon-yellow" />
-              <div>
-                <p className="text-sm font-medium text-foreground/90">
-                  Next.js 15 新特性解析
-                </p>
-                <p className="text-xs text-foreground/50 mt-1">
-                  探索 App Router 和 React Server Components
-                </p>
+          <Link href="/blog" className="block">
+            <BentoCard
+              title="最新博客"
+              description="分享技术见解和开发经验"
+              size="medium"
+              className="bg-gradient-to-br from-neon-yellow/10 to-neon-orange/10 cursor-pointer hover:scale-[1.02] transition-transform"
+            >
+              <div className="flex items-center gap-3 mt-4">
+                <BookOpen className="w-6 h-6 text-neon-yellow" />
+                <div>
+                  <p className="text-sm font-medium text-foreground/90">
+                    Next.js 15 新特性解析
+                  </p>
+                  <p className="text-xs text-foreground/50 mt-1">
+                    探索 App Router 和 React Server Components
+                  </p>
+                </div>
               </div>
-            </div>
-          </BentoCard>
+            </BentoCard>
+          </Link>
 
           {/* 小卡片 - 联系方式 */}
           <BentoCard
