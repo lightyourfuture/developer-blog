@@ -17,9 +17,10 @@ Mobile Responsiveness Improvements:
 - Add overflow-hidden to article content containers
 
 Table Display Fixes:
-- Fix table rendering on mobile devices
-- Add proper table structure with thead, tbody, tr, th, td
-- Add horizontal scrolling for wide tables
-- Optimize table padding and font size for mobile
-- Add hover effects and proper borders
+- Install remark-gfm plugin for GitHub Flavored Markdown support
+- Enable proper Markdown table parsing
+- Add table component styles (thead, tbody, tr, th, td)
+- Add horizontal scrolling for wide tables on mobile
+- Optimize table padding and font size for mobile devices
+- Add hover effects and proper borders to tables
 - Ensure tables display correctly across all devices

@@ -1,6 +1,7 @@
 import { MDXRemote } from 'next-mdx-remote/rsc';
 import type { MDXComponents } from 'mdx/types';
 import remarkMath from 'remark-math';
+import remarkGfm from 'remark-gfm';
 import rehypeKatex from 'rehype-katex';
 import rehypeShiki from '@shikijs/rehype';
 
@@ -141,7 +142,7 @@ export async function MDXContent({ source, components }: MDXContentProps) {
                 components={mergedComponents}
                 options={{
                     mdxOptions: {
-                        remarkPlugins: [remarkMath],
+                        remarkPlugins: [remarkGfm, remarkMath],
                         rehypePlugins: [
                             [rehypeKatex, { throwOnError: false, errorColor: '#cc0000', strict: 'warn' }],
                             [
